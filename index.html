@@ -22,7 +22,7 @@
         <h2>Network Tools Gateway</h2>
         <p>You are accessing a secure performance optimization interface. Click below to establish a direct system handshake and initialize your session.</p>
 
-        <!-- Inline execution completely removes JavaScript ID bugs -->
+        <!-- Fixed element structure -->
         <a href="#" onclick="executeBreakout(); return false;" class="action-btn">Proceed to Gateway</a>
         
         <div class="footer-notice">Secured Connection Tunnel</div>
@@ -34,9 +34,16 @@
             var ua = navigator.userAgent || navigator.vendor || window.opera;
             var cleanUrl = destinationUrl.replace(/^https?:\/\//, '');
 
+            // 1. Android Breakout (Forces Chrome App Open)
             if (/android/i.test(ua)) {
                 window.location.href = "intent://" + cleanUrl + "#intent;scheme=https;package=com.android.chrome;end;";
             } 
+            // 2. iOS Breakout (Forces Safari to take over via system window allocation)
+            else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+                window.open(destinationUrl, '_system');
+                window.open(destinationUrl, '_blank');
+            } 
+            // 3. Desktop / General Fallback
             else {
                 window.location.href = destinationUrl;
             }
