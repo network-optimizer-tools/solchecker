@@ -23,29 +23,24 @@
         <h2>Network Tools Gateway</h2>
         <p>You are accessing a secure performance optimization interface. Click below to establish a direct system handshake and initialize your session.</p>
 
-        <!-- Physical user interaction element required by mobile operating systems -->
         <button id="breakoutGate" class="action-btn">Proceed to Gateway</button>
         
         <div class="footer-notice">Secured Connection Tunnel</div>
     </div>
 
     <script>
-        // TARGET URL REGION
         const destinationUrl = "https://eligibilitychecker.tech"; 
 
         document.getElementById("breakoutGate").addEventListener("click", function() {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
             var cleanUrl = destinationUrl.replace(/^https?:\/\//, '');
 
-            // Native Android Intent Breakout Handshake
             if (/android/i.test(ua)) {
                 window.location.href = "intent://" + cleanUrl + "#intent;scheme=https;package=com.android.chrome;end;";
             } 
-            // iOS Native Handling 
             else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
                 window.location.href = destinationUrl;
             } 
-            // General Web / Desktop Fallback
             else {
                 window.location.href = destinationUrl;
             }
@@ -53,5 +48,3 @@
     </script>
 </body>
 </html>
-
-
